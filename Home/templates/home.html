@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home  {% endblock %}
+{% block body %}
+
+
+<div class="mobile-menu d-md-none d-block mobile-cart">
+    <ul>
+        <li class="active">
+            <a href="index.html">
+                <i class="iconly-Home icli"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <li class="mobile-category">
+            <a href="javascript:void(0)">
+                <i class="iconly-Category icli js-link"></i>
+                <span>Category</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="search.html" class="search-box">
+                <i class="iconly-Search icli"></i>
+                <span>Search</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="wishlist.html" class="notifi-wishlist">
+                <i class="iconly-Heart icli"></i>
+                <span>My Wish</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="cart.html">
+                <i class="iconly-Bag-2 icli fly-cate"></i>
+                <span>Cart</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- mobile fix menu end -->
+
+<!-- Home Section Start -->
+<section class="home-section pt-2">
+    <div class="container-fluid-lg">
+        <div class="row g-4">
+        </div>
+    </div>
+</section>
+
+<section class="product-section">
+    <div class="container-fluid-lg">
+        <div class="row g-sm-4 g-3">
+            <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
+                <div class="p-sticky">
+                    <div class="category-menu">
+                        <h3>Category</h3>
+                        <ul>
+                            {% for c in c %}
+                            <li>
+                                <div class="category-list">
+                                    <img src="{% static 'assets/svg/1/vegetable.svg'%}" class="blur-up lazyload" alt="">
+                                    <h5>
+                                        <a href="shop-left-sidebar.html">{{c.name}}</a>
+                                    </h5>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-9 col-xl-8">
+                <div class="title title-flex">
+                    <div>
+                        <h2>Top Save Today</h2>
+                        <span class="title-leaf">
+                                <svg class="icon-width">
+                                    <use xlink:href="{% static 'assets/svg/leaf.svg'%}#leaf"></use>
+                                </svg>
+                            </span>
+                        <p>Don't miss this opportunity at a special discount just for this week.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+
+                    {% for p in  p %}
+                    <div>
+                        <div class="product-box-3 h-100 wow fadeInUp">
+                            <div class="product-header">
+                                <div class="product-image">
+                                    <a href="product-left-thumbnail.html">
+                                        <img src="{{p.pic.url}}"
+                                             class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+
+                                    <ul class="product-option">
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                               data-bs-target="#view">
+                                                <i data-feather="eye"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                            <a href="compare.html">
+                                                <i data-feather="refresh-cw"></i>
+                                            </a>
+                                        </li>
+
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a href="wishlist.html" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-detail">
+                                    <span class="span-name">category</span>
+                                    <a href="product-left-thumbnail.html">
+                                        <h5 class="name">{{p.name}}</h5>
+                                    </a>
+                                    <p class="text-content mt-1 mb-2 product-content">Cheesy feet cheesy grin brie.
+                                        Mascarpone cheese and wine hard cheese the big cheese everyone loves smelly
+                                        cheese macaroni cheese croque monsieur.</p>
+                                    <div class="product-rating mt-2">
+                                        <ul class="rating">
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star" class="fill"></i>
+                                            </li>
+                                            <li>
+                                                <i data-feather="star"></i>
+                                            </li>
+                                        </ul>
+                                        <span>(4.0)</span>
+                                    </div>
+                                    <h5 class="price">
+
+                                        <span class="theme-color">${{p.P_price}}</span>
+                                        <del>${{p.price}}</del>
+
+                                        <span class="theme-color">${{p.P_price}}</span>
+
+                                    </h5>
+                                    <div class="add-to-cart-box bg-white">
+                                        <button class="btn btn-add-cart addcart-button">Add
+                                            <span class="add-icon bg-light-gray">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </span>
+                                        </button>
+                                        <div class="cart_qty qty-box">
+                                            <div class="input-group bg-white">
+                                                <button type="button" class="qty-left-minus bg-gray"
+                                                        data-type="minus" data-field="">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                       name="quantity" value="0">
+                                                <button type="button" class="qty-right-plus bg-gray"
+                                                        data-type="plus" data-field="">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
