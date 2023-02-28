@@ -4,6 +4,7 @@
 {% block body %}
 
 
+
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
@@ -60,12 +61,19 @@
                     <div class="category-menu">
                         <h3>Category</h3>
                         <ul>
+                            <li>
+                                <h5>
+                                    <a href="/">all product</a>
+                                </h5>
+                            </li>
+
                             {% for c in c %}
                             <li>
+
                                 <div class="category-list">
                                     <img src="{% static 'assets/svg/1/vegetable.svg'%}" class="blur-up lazyload" alt="">
                                     <h5>
-                                        <a href="shop-left-sidebar.html">{{c.name}}</a>
+                                        <a href="/?cat_id={{c.id}}">{{c.name}}</a>
                                     </h5>
                                 </div>
                             </li>
@@ -84,7 +92,7 @@
                                     <use xlink:href="{% static 'assets/svg/leaf.svg'%}#leaf"></use>
                                 </svg>
                             </span>
-                        <p>Don't miss this opportunity at a special discount just for this week.</p>
+                        <p>{% include 'massages.html' %}</p>
                     </div>
 
                 </div>
@@ -97,7 +105,7 @@
                         <div class="product-box-3 h-100 wow fadeInUp">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="{% url 'product' p.id %}">
                                         <img src="{{p.pic.url}}"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
@@ -155,40 +163,38 @@
                                     </div>
                                     <h5 class="price">
 
-                                        <span class="theme-color">${{p.P_price}}</span>
-                                        <del>${{p.price}}</del>
+                                        <span class="theme-color">${{p.price}}</span>
+                                        <del>${{p.P_price}}</del>
 
-                                        <span class="theme-color">${{p.P_price}}</span>
+
 
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button">Add
-                                            <span class="add-icon bg-light-gray">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </span>
-                                        </button>
-                                        <div class="cart_qty qty-box">
-                                            <div class="input-group bg-white">
-                                                <button type="button" class="qty-left-minus bg-gray"
-                                                        data-type="minus" data-field="">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                                </button>
-                                                <input class="form-control input-number qty-input" type="text"
-                                                       name="quantity" value="0">
-                                                <button type="button" class="qty-right-plus bg-gray"
-                                                        data-type="plus" data-field="">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <a href="{% url 'add_to_cart' p.id %}"><button type="submit" class="btn btn-add-cart addcart-button">Add
+<!--                                            <span class="add-icon bg-light-gray">-->
+<!--                                                        <i class="fa-solid fa-plus"></i>-->
+<!--                                                    </span>-->
+                                        </button></a>
+<!--                                        <div class="cart_qty qty-box">-->
+<!--                                            <div class="input-group bg-white">-->
+<!--                                                <button type="button" class="qty-left-minus bg-gray"-->
+<!--                                                        data-type="minus" data-field="">-->
+<!--                                                    <i class="fa fa-minus" aria-hidden="true"></i>-->
+<!--                                                </button>-->
+<!--                                                <input class="form-control input-number qty-input" type="text"-->
+<!--                                                       name="quantity" value="0">-->
+<!--                                                <button type="button" class="qty-right-plus bg-gray"-->
+<!--                                                        data-type="plus" data-field="">-->
+<!--                                                    <i class="fa fa-plus" aria-hidden="true"></i>-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
-
-
                 </div>
             </div>
         </div>

@@ -11,3 +11,5 @@ class Product_List(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Product, Product_List)
+admin.site.register(location)
+admin.site.register(Cart)

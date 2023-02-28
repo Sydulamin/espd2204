@@ -11,10 +11,24 @@ from Product.models import *
 
 
 def home(request):
-    c = Category.objects.all()
-    p = Product.objects.all()
+    user = request.user
+    cart_prod = Cart.objects.filter(user = user )
 
-    return render(request, 'home.html',locals())
+    cc = Cart.objects.filter(user=user).count()
+    l = location.objects.all()
+    c = Category.objects.all()
+    cat_id = request.GET.get('cat_id')
+    if request.method == 'GET':
+        src = request.GET.get('search')
+
+    if src:
+        p = Product.objects.filter(name__icontains=src)
+    elif cat_id:
+        p = Product.objects.filter(category=cat_id)
+    else:
+        p = Product.objects.all()
+
+    return render(request, 'home.html', locals())
 
 
 def base(request):
@@ -115,3 +129,5 @@ def Profile(request):
         "user1": user1
     }
     return render(request, 'Profile.html', Context)
+
+
